@@ -1,0 +1,14 @@
+{
+  "name": "gerald-holdings-medical-imaging",
+  "version": "3.0.0",
+  "private": true,
+  "description": "Gerald Holdings Medical Diagnostic Imaging immersive responsive website and secure form intake service",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check netlify/functions/forms.js && node --check js/main.js && node --check js/translations.js"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "tailwindcss": "^4.3.2"
+  }
+}

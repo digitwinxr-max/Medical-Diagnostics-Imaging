@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Gerald Holdings Medical Diagnostic Imaging – Botswana's most technologically advanced digital healthcare platform. Flagship 3T MRI, 128-Slice CT, 4D Ultrasound, Digital Mammography & 24/7 Teleradiology in Gaborone."/>
+  <meta name="keywords" content="Gerald Holdings, Medical Diagnostic Imaging, MRI Botswana, 3T MRI Gaborone, 128-Slice CT Scan, Teleradiology, Advanced Diagnostics, Radiology Botswana, BHPC Accredited, Digital X-Ray"/>
+  <meta name="author" content="Gerald Holdings (Pty) Ltd"/>
+  <meta property="og:title" content="Medical Diagnostic Imaging – Premium Diagnostic Care in Gaborone"/>
+  <meta property="og:description" content="Fluent in Imaging – Your Image, Our Diagnosis. Experience Southern Africa's premier digitally enabled diagnostic imaging headquarters in Gaborone, Botswana."/>
+  <meta property="og:type" content="website"/>
+  <title>Medical Diagnostic Imaging | Gerald Holdings | Gaborone, Botswana</title>
+  <link rel="icon" type="image/png" href="images/favicon.png"/>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'primary-navy': '#062C5A',
+            'secondary-blue': '#0D4C92',
+            'accent-cyan': '#00C2FF',
+            'bg-slate': '#F8FAFC',
+            'text-dark': '#0F172A',
+            'text-muted': '#64748B',
+          },
+          fontFamily: {
+            manrope: ['Manrope', 'sans-serif'],
+            jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+
+  <!-- External Stylesheet Fallback -->
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <!-- Structured Metadata Schema (SEO & Awwwards-level Standards) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Medical Diagnostic Imaging",
+    "alternateName": "Gerald Holdings Medical Diagnostic Imaging",
+    "legalName": "Gerald Holdings (Pty) Ltd",
+    "url": "https://www.geraldholdings.co.bw",
+    "logo": "https://www.geraldholdings.co.bw/images/gerald-holdings-medical-logo.png",
+    "image": "https://www.geraldholdings.co.bw/images/hero-home-provided.jpg",
+    "description": "Premier technologically advanced diagnostic imaging centre equipped with 3T MRI, 128-Slice CT, 4D Ultrasound, Digital Mammography, and 24/7 Teleradiology.",
+    "telephone": ["+267 311 5757", "+267 718 99311", "+267 750 98683"],
+    "email": "geraldholdings@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Unit 20/23, KB Mall, G-West Industrial",
+      "addressLocality": "Gaborone",
+      "addressRegion": "South-East District",
+      "addressCountry": "BW"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-24.6588581",
+      "longitude": "25.9004018"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59",
+        "description": "24/7 Emergency & Teleradiology Coverage"
+      }
+    ],
+    "medicalSpecialty": ["DiagnosticRadiology", "Neuroimaging", "CardiovascularImaging", "MusculoskeletalRadiology", "Teleradiology"]
+  }
+  </script>
+
+  <!-- INLINE CSS FOR ZERO-LATENCY PREVIEW SANDBOX COMPATIBILITY -->
+  <style i

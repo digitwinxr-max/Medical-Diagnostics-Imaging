@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Imaging Knowledge Centre | Gerald Holdings</title>
+  <meta name="description" content="Patient preparation guides, safety information, and FAQs for MRI, CT, ultrasound, mammography, digital X-ray and dental imaging at Gerald Holdings Medical Diagnostic Imaging.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://geraldholdings.com/knowledge.html">
+  <meta property="og:title" content="Medical Imaging Knowledge Centre | Gerald Holdings">
+  <meta property="og:description" content="Clear preparation guidance and educational infographics for every imaging modality.">
+  <meta property="og:type" content="website">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Design tokens (match site palette) ─────────────── */
+    :root {
+      --c-navy:      #1a2e4a;
+      --c-sky:       #0ea5e9;
+      --c-sky-dk:    #0284c7;
+      --c-white:     #ffffff;
+      --c-slate:     #64748b;
+      --c-bg-soft:   #f0f7ff;
+      --radius:      1rem;
+      --shadow:      0 2px 14px rgba(0,0,0,.08);
+      --shadow-hov:  0 8px 32px rgba(0,0,0,.18);
+      --dur:         360ms;
+      --ease:        cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ── Skip link ───────────────────────────────────────── */
+    .skip-link {
+      position: absolute; top: -999px; left: 0;
+      background: var(--c-sky); color: #fff;
+      padding: .45rem 1rem; z-index: 9999;
+      font-weight: 600; border-radius: 0 0 .5rem 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ═══════════════════════════════════════════════════════
+       INFOGRAPHIC CAROUSEL
+    ═══════════════════════════════════════════════════════ */
+
+    /* Section */
+    .ig-section {
+      background: linear-gradient(155deg, #eef6ff 0%, #e2f0fc 100%);
+      padding: 4rem 0 3.25rem;
+    }
+    @media (max-width:639px){ .ig-section{ padding: 2.75rem 0 2.25rem; } }
+
+    .ig-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    .ig-eyebrow {
+      display: inline-block;
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .13em; text-transform: uppercase;
+      color: var(--c-sky); margin-bottom: .6rem;
+    }
+    .ig-heading {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; color: var(--c-navy);
+      line-height: 1.2; margin-bottom: .65rem;
+    }
+    .ig-sub {
+      color: var(--c-slate); font-size: .975rem;
+      max-width: 540px; line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+
+    /* Carousel wrapper */
+    .carousel { position: relative; }
+
+    /* Viewport clips overflow */
+    .carousel__vp {
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    /* Scrollable track */
+    .carousel__track {
+      display: flex;
+      gap: 1.25rem;
+      transition: transform var(--dur) var(--ease);
+      will-change: transform;
+      user-select: none; -webkit-user-select: none;
+      cursor: grab;
+    }
+    .carousel__track.dragging {
+      cursor: grabbing;
+      transition: none;
+    }
+
+    /* Card */
+    .c-card {
+      flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
+      min-width: 0;
+      background: var(--c-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition:
+        transform var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease);
+      outline: none;
+    }
+    /* 2-up ≥ 640px and < 1024px */
+    @media (max-width:1023px){
+      .c-card{ flex: 0 0 calc((100% - 1.25rem) / 2); }
+    }
+    /* 1-up < 640px */
+    @media (max-width:639px){
+      .c-card{ flex: 0 0 100%; }
+    }
+
+    .c-card:hover,
+    .c-card:focus-visible {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hov);
+    }
+    .c-card:focus-visible {
+      box-shadow: 0 0 0 3px var(--c-sky), var(--shadow-hov);
+    }
+
+    /* Image box – aspect ratio reserves space, prevents CLS */
+    .c-card__img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: auto;
+      overflow: hidden;
+      background: #d8eaf7;
+    }
+    .c-card__img-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: auto;
+      object-fit: contain; display: block; object-position: top center;
+      display: block;
+      transition: transform var(--dur) var(--ease);
+    }
+    .c-card:hover .c-card__img-wrap img,
+    .c-card:focus-visible .c-card__img-wrap img {
+      transform: scale(1.045);
+    }
+
+    /* Card body */
+    .c-card__body { padding: 1rem 1.1rem 1.1rem; }
+    .c-card__num {
+      font-size: .63rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--c-sky); margin-bottom: .2rem;
+    }
+    .c-card__title {
+      font-size: .97rem; font-weight: 600;
+      color: var(--c-navy); line-height: 1.35;
+      margin-bottom: .45rem;
+    }
+    .c-card__desc {
+      font-size: .8rem; color: var(--c-slate);
+      line-height: 1.55;
+    }
+
+    /* Nav buttons */
+    .carousel__controls {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      margin-top: 1.65rem;
+    }
+    .carousel__nav { display: flex; gap: .7rem; }
+
+    .c-btn {
+      width: 2.65rem; height: 2.65rem;
+      border-radius: 50%;
+      border: 2px solid var(--c-sky);
+      background: transparent; color: var(--c-sky);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition:
+        background var(--dur) var(--ease),
+        color var(--dur) var(--ease),
+        transform 180ms ease,
+        opacity var(--dur) var(--ease);
+    }
+    .c-btn:hover:not(:disabled) {
+      background: var(--c-sky); color: #fff;
+      transform: scale(1.1);
+    }
+    .c-btn:focus-visible {
+      outline: 3px solid var(--c-sky); outline-offset: 2px;
+    }
+    .c-btn:disabled { opacity: .32; cursor: not-allowed; }
+    .c-btn svg { width: 1rem; height: 1rem; pointer-events: none; }
+
+    /* Dots */
+    .carousel__dots {
+      display: flex; gap: .45rem; align-items: center;
+    }
+    .c-dot {
+      width: .48rem; height: .48rem; border-radius: 50%;
+      background: #b8d0e8; border: none; cursor: pointer; padding: 0;
+      transition:
+        background var(--dur) var(--ease),
+        width var(--dur) var(--ease);
+      flex-shrink: 0;
+    }
+    .c-dot:hover { background: var(--c-sky-dk); }
+    .c-dot.active {
+      background: var(--c-sky);
+      width: 1.45rem; border-radius: .25rem;
+    }
+    .c-dot:focus-visible {
+      outline: 2px solid var(--c-sky); outline-offset: 2px;
+    }
+
+    /* Progress bar */
+    .carousel__prog {
+      width: 100%; height: 3px;
+      background: #cfe3f5; border-radius: 2px;
+      margin-top: 1.15rem; overflow: hidden;
+    }
+    .carousel__prog-bar {
+      height: auto; width: 0%;
+      background: linear-gradient(90deg, var(--c-sky), var(--c-sky-dk));
+      border-radius: 2px;
+      transition: width .08s linear;
+    }
+
+    /* Pause badge */
+    .c-pause-badge {
+      display: none; position: absolute;
+      top: .7rem; right: .7rem;
+      background: rgba(10,30,60,.72); color: #fff;
+      font-size: .68rem; font-weight: 600;
+      padding: .22rem .55rem; border-radius: .35rem;
+      pointer-events: none; letter-spacing: .04em;
+      font-family: 'Inter', sans-serif;
+    }
+    .carousel.paused .c-pause-badge { display: block; }
+
+    /* FAQ chevron rotate */
+    details.faq-item > summary svg {
+      transition: transform 280ms ease;
+    }
+    details.faq-item[open] > summary svg {
+      transform: rotate(180deg);
+    }
+    details.faq-item > summary { list-style: none; }
+    details.faq-item > summary::-webkit-details-marker { display: none; }
+  </style>
+<style>.carousel__viewport { padding-bottom: 45px !important; margin-bottom: -45px !important; } .c-card__img-wrap { aspect-ratio: auto !important; height: auto !important; } .c-card__img-wrap img { height: auto !important; object-fit: contain !important; display: block !important; }</style>
+  <!-- Infographic Carousel Uncropping Style Override -->
+  <style>
+    .c-card__img-wrap {
+      aspect-ratio: auto !important;
+      height: auto !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+    .c-card__img-wrap img {
+      position: static !important;
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      max-height: none !important;
+    }
+  </style>
+</head>
+
+
+<body class="antialiased" style="font-family:'Inter',sans-serif; color:#1e293b;">
+
+  <!-- Skip-to-content (WCAG 2.1 SC 2.4.1) -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm"
+       aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <a href="index.html"
+           class="flex items-center space-x-3"
+           aria-label="Gerald Holdings Medical Diagnostic Imaging — home">
+          <img src="images/gerald-holdings-medical-logo.png"
+               alt="Gerald Holdings Medical Diagnostic Imaging"
+               width="160" height="40"
+               class="h-10 w-auto object-contain">
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html"     class="text-gray-600 hover:text-[#0ea5e9] text-sm font-medium transition-colors">Home</a>
+          <a href="services.html"  class="text-gray-600 hover:text-[#0ea5e9] text-sm font-medium transition-colors">Services</a>
+          <a href="doctor.html"    class="text-gray-600 hover:text-[#0ea5e9] text-sm font-medium transition-colors">Doctors</a>
+          <a href="patient.html"   class="text-gray-600 hover:text-[#0ea5e9] text-sm font-medium transition-colors">Patients</a>
+          <a href="training.html"  class="text-gray-600 hover:text-[#0ea5e9] text-sm font-medium transition-colors">Training</a>
+          <a href="knowledge.html" class="text-[#0ea5e9] font-semibold text-sm" aria-current="page">Knowledge</a>
+          <a href="blog.html"      class="text-gray-600 hover:text-[#0ea5e9] text-sm font-medium transition-colors">Blog</a>
+          <a href="contact.html"   class="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] focus:ring-offset-2">Book Appointment</a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button id="mob-btn"
+                class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+                aria-expanded="false"
+                aria-controls="mob-menu"
+                aria-label="Open navigation menu">
+          &#9776;
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mob-menu" class="md:hidden hidden pb-4" aria-label="Mobile navigation">
+        <div class="flex flex-col space-y-1 pt-2 border-t border-gray-100">
+          <a href="index.html"     class="px-3 py-2 text-sm text-gray-600 hover:text-[#0ea5e9] font-medium rounded-lg">Home</a>
+          <a href="services.html"  class="px-3 py-2 text-sm text-gray-600 hover:text-[#0ea5e9] font-medium rounded-lg">Services</a>
+          <a href="doctor.html"    class="px-3 py-2 text-sm text-gray-600 hover:text-[#0ea5e9] font-medium rounded-lg">Doctors</a>
+          <a href="patient.html"   class="px-3 py-2 text-sm text-gray-600 hover:text-[#0ea5e9] font-medium rounded-lg">Patients</a>
+          <a href="training.html"  class="px-3 py-2 text-sm text-gray-600 hover:text-[#0ea5e9] font-medium rounded-lg">Training</a>
+          <a href="knowledge.html" class="px-3 py-2 text-sm text-[#0ea5e9] font-semibold rounded-lg" aria-current="page">Knowledge</a>
+          <a href="blog.html"      class="px-3 py-2 text-sm text-gray-600 hover:text-[#0ea5e9] font-medium rounded-lg">Blog</a>
+          <a href="contact.html"   class="mx-3 mt-2 block text-center bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-colors">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO BANNER
+  ══════════════════════════════════════════════════════ -->
+  <header class="bg-gradient-to-br from-[#1a2e4a] to-[#0d1f35] pt-28 pb-16 px-4"
+          role="banner">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-[#0ea5e9] text-xs font-bold tracking-widest uppercase mb-3">
+        PATIENT EDUCATION &bull; IMAGING PREPARATION &bull; FAQS
+      </p>
+      <h1 class="text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
+        Know what to expect.<br>
+        <span class="text-[#0ea5e9]">Arrive prepared.</span>
+      </h1>
+      <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+        Clear preparation guidance for MRI, CT, ultrasound, mammography,
+        digital X-ray and dental imaging&hellip;
+      </p>
+
+      <!-- Search -->
+      <form role="search"
+            class="flex max-w-md mx-auto gap-2 mb-8"
+            action="#guides"
+            method="GET">
+        <label for="knowledge-search" class="sr-only">Search patient guides</label>
+        <input id="knowledge-search"
+               type="search" name="q"
+               placeholder="Search patient guides"
+               class="flex-1 rounded-full px-5 py-3 text-sm text-gray-800 bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]"
+               autocomplete="off">
+        <button type="submit"
+                class="bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-6 py-3 rounded-full text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0ea5e9]">
+          Search
+        </button>
+      </form>
+
+      <!-- Page anchors -->
+      <nav class="flex flex-wrap justify-center gap-3"
+           aria-label="Jump to section">
+        <a href="#guides"    class="px-4 py-2 rounded-full border border-sky-400/40 text-sky-200 text-sm hover:bg-sky-400/10 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400">Preparation guides</a>
+        <a href="#safety"    class="px-4 py-2 rounded-full border border-sky-400/40 text-sky-200 text-sm hover:bg-sky-400/10 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400">Safety &amp; contrast</a>
+        <a href="#downloads" class="px-4 py-2 rounded-full border border-sky-400/40 text-sky-200 text-sm hover:bg-sky-400/10 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400">Forms &amp; checklists</a>
+        <a href="#faq"       class="px-4 py-2 rounded-full border border-sky-400/40 text-sky-200 text-sm hover:bg-sky-400/10 transition-colors focus:outline-none focus:ring-2 focus:ring-sky-400">Frequently asked questions</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════
+       ★★ INFOGRAPHIC CAROUSEL ★★
+       Placed immediately after the hero banner,
+       above the main educational content sections.
+  ══════════════════════════════════════════════════════ -->
+  <section class="ig-section"
+           id="infographics"
+           aria-label="Educational infographic library"
+           aria-roledescription="carousel">
+
+    <div class="ig-inner">
+
+      <!-- Section header row -->
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-1">
+        <div>
+          <span class="ig-eyebrow">VISUAL EDUCATION</span>
+          <h2 class="ig-heading">Browse our infographic library.</h2>
+          <p class="ig-sub">
+            Ten illustrated guides covering every modality — from ultrasound
+            to nuclear medicine. Swipe, drag, or use the controls below.
+          </p>
+        </div>
+        <!-- Badge -->
+        <div class="hidden sm:flex shrink-0 items-center gap-1.5 text-sm text-slate-400 self-start mt-1 pb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          10 infographics
+        </div>
+      </div>
+
+      <!-- Carousel region -->
+      <div class="carousel"
+           id="igc"
+           role="region"
+           aria-roledescription="carousel"
+           aria-label="Infographic slides — use arrow keys to navigate">
+
+        <!-- Pause overlay badge -->
+        <span class="c-pause-badge" aria-hidden="true">&#9646;&#9646; Paused</span>
+
+        <!-- Viewport -->
+        <div class="carousel__vp"
+             id="igc-vp"
+             aria-live="polite"
+             aria-atomic="false">
+
+          <!-- Track -->
+          <div class="carousel__track"
+               id="igc-track"
+               role="list"
+               aria-label="Infographic slides">
+
+            <!-- 01 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 1 of 10: Licensed to See the Unseen">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/01_Licensed_To_See_The_Unseen.png"
+                     alt="Infographic overview of diagnostic imaging technologies and how radiologists visualise internal structures non-invasively"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">01 / 10</p>
+                <h3 class="c-card__title">Licensed to See the Unseen</h3>
+                <p class="c-card__desc">An overview of diagnostic imaging technologies and how radiologists visualise internal structures.</p>
+              </div>
+            </article>
+
+            <!-- 02 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 2 of 10: Understanding Ultrasound">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/02_Understanding_Ultrasound.png"
+                     alt="Diagram explaining how high-frequency sound waves create real-time images of soft tissues without ionising radiation"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">02 / 10</p>
+                <h3 class="c-card__title">Understanding Ultrasound</h3>
+                <p class="c-card__desc">How high-frequency sound waves create real-time dynamic images of soft tissues without radiation.</p>
+              </div>
+            </article>
+
+            <!-- 03 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 3 of 10: Pregnancy Ultrasound Guide">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/03_Pregnancy_Ultrasound.png"
+                     alt="Obstetric ultrasound milestones and safety guide for different stages of pregnancy"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">03 / 10</p>
+                <h3 class="c-card__title">Pregnancy Ultrasound Guide</h3>
+                <p class="c-card__desc">Milestones and safety information for obstetric ultrasound examinations during pregnancy.</p>
+              </div>
+            </article>
+
+            <!-- 04 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 4 of 10: Breast Health and Mammography">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/04_Breast_Health_Mammography.png"
+                     alt="Breast health infographic covering early detection screening recommendations and mammogram preparation steps"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">04 / 10</p>
+                <h3 class="c-card__title">Breast Health &amp; Mammography</h3>
+                <p class="c-card__desc">Important facts about early detection, screening recommendations, and mammogram preparation.</p>
+              </div>
+            </article>
+
+            <!-- 05 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 5 of 10: Understanding Chest Imaging">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/05_Understanding_Chest_Imaging.png"
+                     alt="Chest imaging infographic showing what X-rays and CT scans reveal about cardiac and pulmonary structures"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">05 / 10</p>
+                <h3 class="c-card__title">Understanding Chest Imaging</h3>
+                <p class="c-card__desc">What X-rays and CT scans reveal about cardiac and pulmonary health.</p>
+              </div>
+            </article>
+
+            <!-- 06 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 6 of 10: ECG Explained">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/06_ECG.png"
+                     alt="Electrocardiogram infographic mapping heart electrical signals to assess cardiac rhythm and cardiovascular health"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">06 / 10</p>
+                <h3 class="c-card__title">Electrocardiogram (ECG) Explained</h3>
+                <p class="c-card__desc">How electrical signals of the heart are mapped to assess cardiac rhythm and cardiovascular health.</p>
+              </div>
+            </article>
+
+            <!-- 07 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 7 of 10: CT Scan Explained">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/07_CT_Scan_Explained.png"
+                     alt="CT scan infographic illustrating cross-sectional imaging, multi-planar reconstructions, and patient preparation steps"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">07 / 10</p>
+                <h3 class="c-card__title">CT Scan Explained</h3>
+                <p class="c-card__desc">Understanding cross-sectional imaging, multi-planar reconstructions, and scan preparation.</p>
+              </div>
+            </article>
+
+            <!-- 08 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 8 of 10: Nuclear Medicine and PET Scans">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/08_Nuclear_Medicine.png"
+                     alt="Nuclear medicine and PET scan infographic showing how radiotracers highlight physiological processes at the cellular level"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">08 / 10</p>
+                <h3 class="c-card__title">Nuclear Medicine &amp; PET Scans</h3>
+                <p class="c-card__desc">How radiotracers highlight physiological processes at the cellular and molecular level.</p>
+              </div>
+            </article>
+
+            <!-- 09 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 9 of 10: Preparing for Your Examination">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/09_Preparing_For_Your_Examination.png"
+                     alt="Comprehensive examination preparation checklist covering fasting, contrast, metal safety, and what to bring"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">09 / 10</p>
+                <h3 class="c-card__title">Preparing for Your Examination</h3>
+                <p class="c-card__desc">A comprehensive checklist for fasting, contrast instructions, and metal safety guidelines.</p>
+              </div>
+            </article>
+
+            <!-- 10 -->
+            <article class="c-card" role="listitem" tabindex="0"
+                     aria-label="Slide 10 of 10: From Images to Answers">
+              <div class="c-card__img-wrap">
+                <img src="images/infographics/10_From_Images_To_Answers.png"
+                     alt="Infographic tracing the journey of a diagnostic scan from raw data acquisition to expert radiologist report delivery"
+                     width="800" height="600"
+                     loading="lazy" decoding="async">
+              </div>
+              <div class="c-card__body">
+                <p class="c-card__num" aria-hidden="true">10 / 10</p>
+                <h3 class="c-card__title">From Images to Answers</h3>
+                <p class="c-card__desc">The journey of your scan from raw data acquisition to expert radiologist reporting.</p>
+              </div>
+            </article>
+
+          </div><!-- /track -->
+        </div><!-- /viewport -->
+
+        <!-- Autoplay progress bar -->
+        <div class="carousel__prog"
+             role="progressbar"
+             aria-label="Autoplay progress"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+             id="igc-prog-wrap">
+          <div class="carousel__prog-bar" id="igc-prog"></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="carousel__controls">
+
+          <!-- Dot indicators -->
+          <div class="carousel__dots"
+               id="igc-dots"
+               role="tablist"
+               aria-label="Navigate to slide group"></div>
+
+          <!-- Prev / Autoplay toggle / Next -->
+          <div class="carousel__nav" role="group" aria-label="Slide navigation">
+
+            <button class="c-btn" id="igc-prev"
+                    aria-label="Previous slide" title="Previous slide"
+                    disabled>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+
+            <button class="c-btn" id="igc-play"
+                    aria-label="Pause autoplay" title="Pause autoplay">
+              <!-- Pause icon (visible when playing) -->
+              <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="6"  y="4" width="4" height="16" rx="1"/>
+                <rect x="14" y="4" width="4" height="16" rx="1"/>
+              </svg>
+              <!-- Play icon (visible when paused) -->
+              <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round"
+                   aria-hidden="true" style="display:none">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </button>
+
+            <button class="c-btn" id="igc-next"
+                    aria-label="Next slide" title="Next slide">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+
+          </div>
+        </div><!-- /controls -->
+
+      </div><!-- /carousel -->
+    </div><!-- /ig-inner -->
+  </section>
+  <!-- ══════════════════════════════════════ END CAROUSEL ══ -->
+
+
+  <!-- ══════════════════════════════════════════════════════
+       MAIN EDUCATIONAL CONTENT  (original, preserved)
+  ══════════════════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ── PREPARATION GUIDES ──────────────────────────── -->
+    <section id="guides" class="py-16 px-4 bg-white"
+             aria-labelledby="guides-h2">
+      <div class="max-w-5xl mx-auto">
+        <p class="text-[#0ea5e9] text-xs font-bold tracking-widest uppercase mb-2">PREPARATION GUIDES</p>
+        <h2 id="guides-h2" class="text-3xl font-bold text-[#1a2e4a] mb-3">
+          Simple steps for a smoother appointment.
+        </h2>
+        <p class="text-gray-600 mb-10 max-w-2xl">
+          Your booking confirmation may contain protocol-specific instructions.
+          If those instructions differ from those below, follow the booking confirmation.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <span class="text-3xl mb-3 block" aria-hidden="true">🧲</span>
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">MRI preparation</h3>
+            <ul class="space-y-2 text-sm text-gray-600 mb-4">
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Remove jewellery, watches, cards and removable metal.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Tell staff about implants, devices, pregnancy or prior metal injury.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Advise us about claustrophobia before the appointment.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Fast only if your booking instructions say contrast or sedation is planned.</li>
+            </ul>
+            <button onclick="window.print()"
+                    class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+                    aria-label="Print MRI preparation checklist">
+              Print checklist &rarr;
+            </button>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <span class="text-3xl mb-3 block" aria-hidden="true">⭕</span>
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">CT preparation</h3>
+            <ul class="space-y-2 text-sm text-gray-600 mb-4">
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Follow the fasting instruction supplied for contrast studies.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Tell staff about allergies, kidney disease, diabetes and current medicines.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Bring relevant blood results if requested.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Hydrate after contrast unless a clinician has restricted your fluids.</li>
+            </ul>
+            <button onclick="window.print()"
+                    class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+                    aria-label="Print CT preparation checklist">
+              Print checklist &rarr;
+            </button>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <span class="text-3xl mb-3 block" aria-hidden="true">🌊</span>
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">Ultrasound preparation</h3>
+            <ul class="space-y-2 text-sm text-gray-600 mb-4">
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Pelvic studies may require a comfortably full bladder.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Abdominal or liver studies may require fasting.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Wear comfortable clothing and bring prior imaging.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Obstetric instructions vary by stage of pregnancy.</li>
+            </ul>
+            <button onclick="window.print()"
+                    class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+                    aria-label="Print ultrasound preparation checklist">
+              Print checklist &rarr;
+            </button>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <span class="text-3xl mb-3 block" aria-hidden="true">🎀</span>
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">Mammography preparation</h3>
+            <ul class="space-y-2 text-sm text-gray-600 mb-4">
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Do not apply deodorant, powder or lotion to the chest or underarms.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Bring previous breast images and reports if available.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Tell the technologist about symptoms, surgery or pregnancy.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Wear a two-piece outfit for convenience.</li>
+            </ul>
+            <button onclick="window.print()"
+                    class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+                    aria-label="Print mammography preparation checklist">
+              Print checklist &rarr;
+            </button>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <span class="text-3xl mb-3 block" aria-hidden="true">☢️</span>
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">Digital X-ray</h3>
+            <ul class="space-y-2 text-sm text-gray-600 mb-4">
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Bring your referral and identification.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Remove metal from the area being examined.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Tell staff if pregnancy is possible.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Most routine X-rays require no fasting.</li>
+            </ul>
+            <button onclick="window.print()"
+                    class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+                    aria-label="Print X-ray preparation checklist">
+              Print checklist &rarr;
+            </button>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <span class="text-3xl mb-3 block" aria-hidden="true">🦷</span>
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">Dental imaging</h3>
+            <ul class="space-y-2 text-sm text-gray-600 mb-4">
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Remove earrings, facial piercings, spectacles and removable dentures.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Bring the dentist or orthodontist referral.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Remain still while the scanner rotates around the head.</li>
+              <li class="flex items-start gap-2"><span class="text-[#0ea5e9] font-bold mt-0.5" aria-hidden="true">•</span>Tell staff if pregnancy is possible.</li>
+            </ul>
+            <button onclick="window.print()"
+                    class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+                    aria-label="Print dental imaging preparation checklist">
+              Print checklist &rarr;
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SAFETY ─────────────────────────────────────── -->
+    <section id="safety" class="py-16 px-4 bg-slate-50"
+             aria-labelledby="safety-h2">
+      <div class="max-w-5xl mx-auto">
+        <p class="text-[#0ea5e9] text-xs font-bold tracking-widest uppercase mb-2">SAFETY FIRST</p>
+        <h2 id="safety-h2" class="text-3xl font-bold text-[#1a2e4a] mb-8">
+          Share the right information before your scan.
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">MRI safety screening</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              MRI does not use ionising radiation, but the strong magnetic field requires careful screening.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold mt-0.5" aria-hidden="true">•</span>Pacemakers, aneurysm clips, cochlear implants and implanted pumps</li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold mt-0.5" aria-hidden="true">•</span>Metal fragments, surgical implants or occupational metal exposure</li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold mt-0.5" aria-hidden="true">•</span>Pregnancy, claustrophobia or need for assistance</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+            <h3 class="text-lg font-semibold text-[#1a2e4a] mb-3">Contrast &amp; radiation safety</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              When contrast or ionising radiation is clinically indicated, protocols are selected around the real benefit to you.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold mt-0.5" aria-hidden="true">•</span>Report prior contrast reactions and relevant allergies</li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold mt-0.5" aria-hidden="true">•</span>Share kidney disease, diabetes and medication history</li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold mt-0.5" aria-hidden="true">•</span>Tell staff if pregnancy is possible or you are breastfeeding</li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="mt-8 bg-blue-50 border border-blue-200 rounded-2xl p-5 text-sm text-gray-700">
+          <strong class="text-[#1a2e4a]">Human clinical oversight:</strong>
+          Qualified radiologists make final clinical interpretations. Results should be discussed with your referring clinician.
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DOWNLOADS ──────────────────────────────────── -->
+    <section id="downloads" class="py-16 px-4 bg-white"
+             aria-labelledby="downloads-h2">
+      <div class="max-w-5xl mx-auto">
+        <p class="text-[#0ea5e9] text-xs font-bold tracking-widest uppercase mb-2">FORMS &amp; CHECKLISTS</p>
+        <h2 id="downloads-h2" class="text-3xl font-bold text-[#1a2e4a] mb-8">Useful appointment resources.</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <h3 class="text-base font-semibold text-[#1a2e4a] mb-2">Complete preparation guide</h3>
+            <p class="text-sm text-gray-600 mb-4">Print all modality checklists from this page for your appointment folder.</p>
+            <a href="javascript:window.print()"
+               class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+               aria-label="Print the complete preparation guide">
+              Print this page &rarr;
+            </a>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <h3 class="text-base font-semibold text-[#1a2e4a] mb-2">Patient consent form</h3>
+            <p class="text-sm text-gray-600 mb-4">Consent requirements vary by examination and contrast use. Request the current form from reception.</p>
+            <a href="mailto:geraldholdings@gmail.com?subject=Patient%20Consent%20Form"
+               class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+               aria-label="Request patient consent form by email">
+              Request by email &rarr;
+            </a>
+          </div>
+
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-md transition-shadow">
+            <h3 class="text-base font-semibold text-[#1a2e4a] mb-2">Radiation safety information</h3>
+            <p class="text-sm text-gray-600 mb-4">Ask the radiography team about the protocol, benefits, alternatives and dose optimisation.</p>
+            <a href="contact.html"
+               class="text-sm text-[#0ea5e9] font-semibold hover:underline focus:outline-none focus:ring-2 focus:ring-[#0ea5e9] rounded"
+               aria-label="Contact the centre for radiation safety information">
+              Contact the centre &rarr;
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────── -->
+    <section id="faq" class="py-16 px-4 bg-slate-50"
+             aria-labelledby="faq-h2">
+      <div class="max-w-3xl mx-auto">
+        <p class="text-[#0ea5e9] text-xs font-bold tracking-widest uppercase mb-2">FREQUENTLY ASKED QUESTIONS</p>
+        <h2 id="faq-h2" class="text-3xl font-bold text-[#1a2e4a] mb-8">Quick, practical answers.</h2>
+
+        <div class="space-y-3">
+
+          <details class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden" open>
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-[#1a2e4a] text-sm hover:bg-slate-50 transition-colors">
+              How long does a report take?
+              <svg class="w-4 h-4 text-[#0ea5e9] shrink-0 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-5 pb-5 text-sm text-gray-600">Routine reports are generally targeted within 24 hours and urgent cases are prioritised. Actual turnaround depends on examination type and referral urgency. Ask reception at the time of booking.</p>
+          </details>
+
+          <details class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-[#1a2e4a] text-sm hover:bg-slate-50 transition-colors">
+              Do I need a referral?
+              <svg class="w-4 h-4 text-[#0ea5e9] shrink-0 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-5 pb-5 text-sm text-gray-600">Most imaging examinations require a referral from a doctor, specialist, or dentist so that the appropriate protocol can be selected and results reported meaningfully. Contact us if you are unsure.</p>
+          </details>
+
+          <details class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-[#1a2e4a] text-sm hover:bg-slate-50 transition-colors">
+              Is MRI safe?
+              <svg class="w-4 h-4 text-[#0ea5e9] shrink-0 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-5 pb-5 text-sm text-gray-600">MRI uses no ionising radiation and is safe for most patients. The strong magnetic field requires careful safety screening for metal implants, devices, and pregnancy. Always complete the MRI safety questionnaire before your scan.</p>
+          </details>
+
+          <details class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-[#1a2e4a] text-sm hover:bg-slate-50 transition-colors">
+              What payment methods and medical aids are supported?
+              <svg class="w-4 h-4 text-[#0ea5e9] shrink-0 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-5 pb-5 text-sm text-gray-600">We accept cash, card, and major medical aid schemes. Contact reception to confirm whether your specific scheme is currently on our accredited list before your appointment.</p>
+          </details>
+
+          <details class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-[#1a2e4a] text-sm hover:bg-slate-50 transition-colors">
+              How do I access my report?
+              <svg class="w-4 h-4 text-[#0ea5e9] shrink-0 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-5 pb-5 text-sm text-gray-600">Reports are sent to your referring doctor. Copies can be collected from reception or requested by email. Visit the <a href="patient.html" class="text-[#0ea5e9] hover:underline">Patient portal</a> for more options.</p>
+          </details>
+
+          <details class="faq-item bg-white rounded-2xl border border-slate-200 overflow-hidden">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-[#1a2e4a] text-sm hover:bg-slate-50 transition-colors">
+              Where is the Gaborone office?
+              <svg class="w-4 h-4 text-[#0ea5e9] shrink-0 ml-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-5 pb-5 text-sm text-gray-600">We are located at Unit 20/23, KB Mall, G-West Industrial, Gaborone. View directions on the <a href="contact.html" class="text-[#0ea5e9] hover:underline">Contact page</a>.</p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── CTA BANNER ─────────────────────────────────── -->
+  <section class="bg-gradient-to-r from-[#1a2e4a] to-[#0d1f35] py-16 px-4 text-center"
+           aria-label="Booking enquiry">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Still unsure how to prepare?</h2>
+      <p class="text-slate-300 mb-8">
+        Contact reception with the name of your examination and preferred
+        appointment date. The team will confirm the correct preparation instructions.
+      </p>
+      <a href="contact.html#book"
+         class="inline-block bg-[#0ea5e9] hover:bg-[#0284c7] text-white px-8 py-3 rounded-full font-semibold text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0ea5e9]">
+        BOOK OR SEND AN ENQUIRY
+      </a>
+      <div class="flex flex-wrap justify-center gap-6 mt-8 text-sm">
+        <a href="tel:+2673115757"   class="text-sky-200 hover:text-white transition-colors">Main (+267) 311 5757</a>
+        <a href="tel:+26771899311"  class="text-sky-200 hover:text-white transition-colors">Mascom +267 718 99311</a>
+        <a href="tel:+26775098683"  class="text-sky-200 hover:text-white transition-colors">Orange +267 750 98683</a>
+        <a href="https://wa.me/26771899311" class="text-sky-200 hover:text-white transition-colors" rel="noopener noreferrer">WhatsApp 718 99311</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer class="bg-[#0d1f35] text-slate-300 py-12 px-4" role="contentinfo">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div>
+        <img src="images/gerald-holdings-medical-logo.png"
+             alt="Gerald Holdings Medical Diagnostic Imaging"
+             width="160" height="40"
+             loading="lazy"
+             class="h-10 w-auto object-contain mb-3">
+        <p class="text-xs font-bold tracking-widest uppercase text-[#0ea5e9] mb-1">MEDICAL DIAGNOSTIC IMAGING</p>
+        <p class="text-sm text-slate-400">Gerald Holdings (Pty) Ltd</p>
+        <p class="text-sm text-slate-400 mt-2">Premier Diagnostic Imaging Centre.<br>Licensed to See the Unseen.</p>
+      </div>
+
+      <div>
+        <h3 class="text-white font-semibold mb-4 text-sm">Resources</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="services.html" class="hover:text-white transition-colors">Imaging services</a></li>
+          <li><a href="patient.html"  class="hover:text-white transition-colors">Patient portal</a></li>
+          <li><a href="doctor.html"   class="hover:text-white transition-colors">Doctor portal</a></li>
+          <li><a href="blog.html"     class="hover:text-white transition-colors">Clinical insights</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-white font-semibold mb-4 text-sm">Contact</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="tel:+2673115757"   class="hover:text-white transition-colors">Main (+267) 311 5757</a></li>
+          <li><a href="tel:+26771899311"  class="hover:text-white transition-colors">Mascom +267 718 99311</a></li>
+          <li><a href="tel:+26775098683"  class="hover:text-white transition-colors">Orange +267 750 98683</a></li>
+          <li><a href="mailto:geraldholdings@gmail.com" class="hover:text-white transition-colors">geraldholdings@gmail.com</a></li>
+          <li class="text-slate-500 text-xs pt-1">Unit 20/23, KB Mall, G-West Industrial, Gaborone</li>
+          <li class="text-slate-500 text-xs">P.O. Box 679 ABG, Gaborone</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="max-w-5xl mx-auto border-t border-slate-700 mt-10 pt-6 text-xs text-slate-500 text-center">
+      &copy; 2026 Gerald Holdings (Pty) Ltd. General education only; not a substitute for personalised medical advice.
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════════════════ -->
+  <script>
+    /* ─────────────────────────────────────────────────────
+       MOBILE MENU
+    ───────────────────────────────────────────────────── */
+    (function () {
+      var btn  = document.getElementById('mob-btn');
+      var menu = document.getElementById('mob-menu');
+      if (!btn || !menu) return;
+      btn.addEventListener('click', function () {
+        var open = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }());
+
+    /* ─────────────────────────────────────────────────────
+       INFOGRAPHIC CAROUSEL
+       ─ 3-up / 2-up / 1-up via CSS flex
+       ─ Prev/Next with wraparound
+       ─ Dot pagination (accessible tab-list)
+       ─ 5 s autoplay + animated progress bar
+       ─ Pause on hover, focus-within, user action
+       ─ Touch swipe + optional mouse drag
+       ─ Keyboard: ArrowLeft / ArrowRight / Home / End
+       ─ ARIA: live region, role=list, per-slide labels
+       ─ CLS prevention: aspect-ratio + explicit dimensions
+    ───────────────────────────────────────────────────── */
+    (function () {
+      'use strict';
+
+      /* — Config — */
+      var AUTOPLAY_INTERVAL = 5000;   // ms per slide
+      var PROG_TICK         = 60;     // ms between progress updates
+      var DRAG_THRESH       = 48;     // px to register a swipe/drag
+
+      /* — State — */
+      var idx       = 0;              // current leading card index
+      var visible   = 3;             // cards shown (CSS handles layout)
+      var paused    = false;         // user-paused flag
+      var playTimer = null;
+      var progTimer = null;
+      var progMs    = 0;
+      var dragX     = 0;
+      var dragging  = false;
+      var touchX    = 0;
+
+      /* — Elements — */
+      var root     = document.getElementById('igc');
+      var track    = document.getElementById('igc-track');
+      var prevBtn  = document.getElementById('igc-prev');
+      var nextBtn  = document.getElementById('igc-next');
+      var playBtn  = document.getElementById('igc-play');
+      var iPause   = document.getElementById('icon-pause');
+      var iPlay    = document.getElementById('icon-play');
+      var dotsEl   = document.getElementById('igc-dots');
+      var progEl   = document.getElementById('igc-prog');
+      var progWrap = document.getElementById('igc-prog-wrap');
+
+      if (!track) return;
+      var cards = Array.from(track.querySelectorAll('.c-card'));
+      var total = cards.length;
+
+      /* — Dot builder — */
+      function buildDots() {
+        dotsEl.innerHTML = '';
+        var pages = Math.ceil(total / visible);
+        for (var i = 0; i < pages; i++) {
+          var d = document.createElement('button');
+          d.className = 'c-dot' + (i === 0 ? ' active' : '');
+          d.setAttribute('role', 'tab');
+          d.setAttribute('aria-label', 'Slide group ' + (i + 1) + ' of ' + pages);
+          d.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+          d.dataset.page = i;
+          d.addEventListener('click', function (e) {
+            goTo(parseInt(e.currentTarget.dataset.page, 10) * visible, true);
+          });
+          dotsEl.appendChild(d);
+        }
+      }
+
+      /* — Sync UI — */
+      function syncUI() {
+        var maxIdx = Math.max(0, total - visible);
+        idx = Math.max(0, Math.min(idx, maxIdx));
+
+        var w   = cards[0].offsetWidth;
+        var gap = parseFloat(window.getComputedStyle(track).gap) || 20;
+        track.style.transform = 'translateX(-' + (idx * (w + gap)) + 'px)';
+
+        prevBtn.disabled = idx === 0;
+        nextBtn.disabled = idx >= maxIdx;
+
+        var page = Math.floor(idx / visible);
+        var dots = dotsEl.querySelectorAll('.c-dot');
+        dots.forEach(function (d, i) {
+          var a = i === page;
+          d.classList.toggle('active', a);
+          d.setAttribute('aria-selected', a ? 'true' : 'false');
+        });
+
+        /* update live region */
+        var vp = root.querySelector('.carousel__vp');
+        if (vp) {
+          vp.setAttribute('aria-label',
+            'Showing slides ' + (idx + 1) + '–' +
+            Math.min(idx + visible, total) + ' of ' + total);
+        }
+      }
+
+      /* — Navigation — */
+      function goTo(target, userAction) {
+        idx = target;
+        syncUI();
+        if (userAction) userPause();
+      }
+
+      function stepNext(userAction) {
+        var max = Math.max(0, total - visible);
+        goTo(idx >= max ? 0 : idx + 1, userAction);
+      }
+
+      function stepPrev(userAction) {
+        var max = Math.max(0, total - visible);
+        goTo(idx <= 0 ? max : idx - 1, userAction);
+      }
+
+      /* — Autoplay — */
+      function startProg() {
+        clearInterval(progTimer);
+        progMs = 0;
+        progTimer = setInterval(function () {
+          if (paused) return;
+          progMs += PROG_TICK;
+          var pct = Math.min(100, (progMs / AUTOPLAY_INTERVAL) * 100);
+          progEl.style.width = pct + '%';
+          if (progWrap) progWrap.setAttribute('aria-valuenow', Math.round(pct));
+        }, PROG_TICK);
+      }
+
+      function startPlay() {
+        clearInterval(playTimer);
+        startProg();
+        playTimer = setInterval(function () {
+          if (!paused) { stepNext(false); startProg(); }
+        }, AUTOPLAY_INTERVAL);
+      }
+
+      function userPause() {
+        paused = true;
+        root.classList.add('paused');
+        iPause.style.display = 'none';
+        iPlay.style.display  = 'block';
+        playBtn.setAttribute('aria-label', 'Resume autoplay');
+        playBtn.title = 'Resume autoplay';
+      }
+
+      function userResume() {
+        paused = false;
+        root.classList.remove('paused');
+        iPause.style.display = 'block';
+        iPlay.style.display  = 'none';
+        playBtn.setAttribute('aria-label', 'Pause autoplay');
+        playBtn.title = 'Pause autoplay';
+        startProg();
+      }
+
+      /* — Button listeners — */
+      prevBtn.addEventListener('click', function () { stepPrev(true); });
+      nextBtn.addEventListener('click', function () { stepNext(true); });
+      playBtn.addEventListener('click', function () {
+        paused ? userResume() : userPause();
+      });
+
+      /* — Hover / focus pause — */
+      root.addEventListener('mouseenter', function () { if (!paused) paused = true; });
+      root.addEventListener('mouseleave', function () {
+        if (!root.classList.contains('paused')) paused = false;
+      });
+      root.addEventListener('focusin',  function () { if (!paused) paused = true; });
+      root.addEventListener('focusout', function (e) {
+        if (!root.contains(e.relatedTarget) && !root.classList.contains('paused'))
+          paused = false;
+      });
+
+      /* — Keyboard — */
+      root.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft')  { stepPrev(true); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { stepNext(true); e.preventDefault(); }
+        if (e.key === 'Home') { goTo(0, true); e.preventDefault(); }
+        if (e.key === 'End')  { goTo(Math.max(0, total - visible), true); e.preventDefault(); }
+      });
+
+      /* — Touch — */
+      track.addEventListener('touchstart', function (e) {
+        touchX = e.changedTouches[0].clientX;
+      }, { passive: true });
+      track.addEventListener('touchend', function (e) {
+        var d = touchX - e.changedTouches[0].clientX;
+        if (d >  DRAG_THRESH) stepNext(true);
+        if (d < -DRAG_THRESH) stepPrev(true);
+      }, { passive: true });
+
+      /* — Mouse drag — */
+      track.addEventListener('mousedown', function (e) {
+        dragging = true; dragX = e.clientX;
+        track.classList.add('dragging');
+        e.preventDefault();
+      });
+      document.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        var w   = cards[0].offsetWidth;
+        var gap = parseFloat(window.getComputedStyle(track).gap) || 20;
+        var base = idx * (w + gap);
+        track.style.transform = 'translateX(-' + (base + dragX - e.clientX) + 'px)';
+      });
+      document.addEventListener('mouseup', function (e) {
+        if (!dragging) return;
+        dragging = false;
+        track.classList.remove('dragging');
+        var d = dragX - e.clientX;
+        if (d >  DRAG_THRESH) stepNext(true);
+        else if (d < -DRAG_THRESH) stepPrev(true);
+        else syncUI();
+      });
+
+      /* — Responsive recalc — */
+      function calcVisible() {
+        var w = window.innerWidth;
+        return w < 640 ? 1 : w < 1024 ? 2 : 3;
+      }
+      window.addEventListener('resize', function () {
+        var nv = calcVisible();
+        if (nv !== visible) {
+          visible = nv;
+          var max = Math.max(0, total - visible);
+          if (idx > max) idx = max;
+          buildDots();
+          syncUI();
+        }
+      });
+
+      /* — Init — */
+      visible = calcVisible();
+      buildDots();
+      syncUI();
+      startPlay();
+
+    }());
+  </script>
+
+</body>
+</html>
