@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="Gerald Holdings Medical Imaging - Immersive Portal Gateway">
+  <Navbar />
+  
+  <main class="relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12 z-10">
+    <!-- Ambient glowing backgrounds -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="mx-auto max-w-5xl text-center relative z-10">
+      <!-- Micro-interaction Tag -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-bold tracking-wider uppercase mb-8 animate-pulse">
+        <span class="h-2 w-2 rounded-full bg-cyan-500"></span> Securing Clinical Imaging in Botswana
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight font-display mb-6 leading-none">
+        Next-Generation <br class="hidden sm:inline"/>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-blue-500 dark:from-cyan-400 dark:to-blue-400">Medical Diagnostics</span>
+      </h1>
+
+      <p class="mx-auto max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-300 font-sans mb-12 leading-relaxed">
+        Welcome to the premium interactive interface of Gerald Holdings. Experience high-fidelity diagnostic imaging, interactive DICOM simulation, and real-time clinical workflows optimized for modern desktop & mobile environments.
+      </p>
+
+      <!-- Grid of Sequential Entry Points (Creative & Logical Ordering) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left max-w-4xl mx-auto">
+        
+        <!-- Step 1: Services (The entry point to see what is offered) -->
+        <a href="/services" class="group p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-900 hover:border-cyan-500/30 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-4">
+            <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-500 font-mono font-bold text-lg">01</div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Explore</span>
+          </div>
+          <h3 class="text-lg font-bold font-display group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors mb-2">Imaging Modalities</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-normal">Detailed breakdown of 3T MRI, CT, and Ultra-HD Ultrasound technology.</p>
+        </a>
+
+        <!-- Step 2: Patient Portal (Patient intake and simulated self-service) -->
+        <a href="/patient" class="group p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-900 hover:border-cyan-500/30 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1">
+          <div class="flex items-center justify-between mb-4">
+            <div class="p-3 rounded-xl bg-blue-500/10 text-blue-500 font-mono font-bold text-lg">02</div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Self-Service</span>
+          </div>
+          <h3 class="text-lg font-bold font-display group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors mb-2">Patient Portal</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-normal">Intake scheduling forms, preparation guides, and simulation tools.</p>
+        </a>
+
+        <!-- Step 3: Doctor Portal (The core clinical medical viewer / triage workspace) -->
+        <a href="/doctor" class="group p-6 rounded-2xl border border-slate-200/60 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:bg-white dark:hover:bg-slate-900 hover:border-cyan-500/30 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center justify-between mb-4">
+            <div class="p-3 rounded-xl bg-purple-500/10 text-purple-500 font-mono font-bold text-lg">03</div>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Clinical</span>
+          </div>
+          <h3 class="text-lg font-bold font-display group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors mb-2">Doctor Workspace</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-normal">Simulated interactive DICOM PACS viewer and anatomy workspace.</p>
+        </a>
+
+      </div>
+    </div>
+  </main>
+</Layout>

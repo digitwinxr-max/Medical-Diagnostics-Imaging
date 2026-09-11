@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="Imaging Modalities - Gerald Holdings">
+  <Navbar />
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl font-extrabold tracking-tight font-display mb-4">Diagnostic Modalities</h1>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Explore our clinical imaging capabilities, from high-tesla magnets to high-frequency ultrasound systems.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-8 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/80 shadow-sm">
+        <span class="text-3xl mb-4 block">🧲</span>
+        <h2 class="text-xl font-bold font-display mb-3">3T Magnetic Resonance (MRI)</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">High SNR imaging providing structural detail for neurovascular, musculoskeletal, and body diagnostics.</p>
+        <a href="/patient" class="text-cyan-500 hover:text-cyan-400 font-semibold text-sm inline-flex items-center gap-2">Schedule Scan →</a>
+      </div>
+
+      <div class="p-8 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/80 shadow-sm">
+        <span class="text-3xl mb-4 block">⚡</span>
+        <h2 class="text-xl font-bold font-display mb-3">Ultra-HD Computed Tomography (CT)</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Multi-slice spiral CT for high-speed vascular, cardiac, and musculoskeletal bone reconstruction.</p>
+        <a href="/patient" class="text-cyan-500 hover:text-cyan-400 font-semibold text-sm inline-flex items-center gap-2">Schedule Scan →</a>
+      </div>
+
+      <div class="p-8 rounded-2xl bg-white dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/80 shadow-sm">
+        <span class="text-3xl mb-4 block">🔊</span>
+        <h2 class="text-xl font-bold font-display mb-3">High-Frequency Ultrasound (US)</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Real-time hemodynamic mapping, vascular analysis, and superficial organ tissue modeling.</p>
+        <a href="/patient" class="text-cyan-500 hover:text-cyan-400 font-semibold text-sm inline-flex items-center gap-2">Schedule Scan →</a>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="Knowledge Hub - Clinical Research & Training">
+  <Navbar />
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-bold tracking-wider uppercase mb-4">
+        <span>📖</span> Research & Professional Education
+      </div>
+      <h1 class="text-4xl font-extrabold tracking-tight font-display mb-4">Diagnostic Knowledge Center</h1>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Access local case studies, system specifications, clinical trials, and professional radiological training frameworks.</p>
+    </div>
+
+    <!-- Active Research Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-semibold text-cyan-500 font-mono tracking-widest uppercase mb-2 block">Case Study #0294</span>
+          <h2 class="text-xl font-bold font-display mb-3">Early Detection of Neurovascular Lesions with 3T High-Field MRI</h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">A comprehensive diagnostic study analyzing SNR benchmarks and tissue segmentation algorithms across local clinic patient populations in Gaborone.</p>
+        </div>
+        <div class="flex items-center justify-between text-xs text-slate-400">
+          <span>Author: GHM Radiology Board</span>
+          <span>Read Time: 12 min</span>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-semibold text-blue-500 font-mono tracking-widest uppercase mb-2 block">Clinical Spec Sheet</span>
+          <h2 class="text-xl font-bold font-display mb-3">Computed Tomography Radiation Triage Protocol (v3.0)</h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Standard operating specification sheet outlining multi-slice diagnostic dosimetry standards to minimize pediatric exposure rates during scans.</p>
+        </div>
+        <div class="flex items-center justify-between text-xs text-slate-400">
+          <span>Format: Secure PDF</span>
+          <span>Size: 4.2 MB</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

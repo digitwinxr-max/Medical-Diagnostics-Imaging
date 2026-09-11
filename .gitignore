@@ -1,0 +1,4 @@
+node_modules/
+data/submissions.ndjson
+*.log
+.DS_Store

@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+---
+
+<Layout title="Patient Portal - Gerald Holdings">
+  <Navbar />
+  <main class="max-w-4xl mx-auto px-4 py-12 relative z-10">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-xl">
+      <h1 class="text-3xl font-bold font-display mb-6">Patient Self-Service Intake</h1>
+      
+      <!-- Interactive simulated login container -->
+      <div id="patient-portal-auth" class="space-y-6">
+        <p class="text-slate-600 dark:text-slate-400">Login to view preparation instructions or simulate booking an imaging appointment.</p>
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider mb-2 text-slate-500">Patient Full Name</label>
+          <input type="text" id="patient-name-input" placeholder="e.g., Tebogo Mokgosi" class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+        </div>
+        <button id="patient-login-btn" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:opacity-90 transition-all">Enter Secure Portal</button>
+      </div>
+
+      <!-- Logged-in view (hidden initially) -->
+      <div id="patient-dashboard" class="hidden space-y-6">
+        <div class="p-6 rounded-2xl bg-cyan-500/10 border border-cyan-500/20">
+          <h2 class="text-lg font-bold text-cyan-600 dark:text-cyan-400 font-display mb-1">Welcome Back, <span id="display-patient-name"></span>!</h2>
+          <p class="text-xs text-slate-500">Patient File ID: GHM-0294-A</p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="text-md font-bold font-display">Your Scheduled Exams</h3>
+          <div class="border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex items-center justify-between">
+            <div>
+              <p class="font-bold text-sm text-slate-800 dark:text-slate-100">3T Brain MRI</p>
+              <p class="text-xs text-slate-500">Date: 2026-07-28 | Time: 09:00 AM</p>
+            </div>
+            <span class="px-3 py-1 bg-green-100 dark:bg-green-950 text-green-600 dark:text-green-400 text-xs font-bold rounded-full">Confirmed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Dynamic client-side portal simulation using ESM modules or standard DOM listeners
+  const loginBtn = document.getElementById('patient-login-btn');
+  const authBox = document.getElementById('patient-portal-auth');
+  const dashBox = document.getElementById('patient-dashboard');
+  const input = document.getElementById('patient-name-input');
+  const display = document.getElementById('display-patient-name');
+
+  if (loginBtn && authBox && dashBox && input && display) {
+    loginBtn.addEventListener('click', () => {
+      const name = input.value || 'Tebogo Mokgosi';
+      display.textContent = name;
+      authBox.classList.add('hidden');
+      dashBox.classList.remove('hidden');
+    });
+  }
+</script>
