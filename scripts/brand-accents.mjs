@@ -25,6 +25,7 @@ for (const f of TW) {
   let html = read(p);
   const i = html.indexOf('/* Gerald Holdings brand accents');
   if (i === -1) { log.push(`${f}: accent block missing, skipped`); continue; }
+  if (html.includes('/* --- GH global refinements --- */')) { log.push(`${f}: already applied, skipped`); continue; }
   html = html.replace('/* Gerald Holdings brand accents', `${GLOBAL_EXTRA}/* Gerald Holdings brand accents`);
   write(p, html);
   log.push(`${f}: global GH refinements added`);

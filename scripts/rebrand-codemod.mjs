@@ -209,15 +209,20 @@ function addSeo(html, file) {
 function addSkipTarget(html, file) {
   let out = html;
   if (!out.includes('gh-skip-link')) {
-    out = out.replace(/(<body[^>]*>)/i, `$1\n  <a class="gh-skip-link" href="#main-content">Skip to main content</a>`);
-    note(file, 'added skip-to-content link');
+    const target = file === 'index.html' ? '#home-hero' : '#main-content';
+    out = out.replace(/(<body[^>]*>)/i, `$1\n  <a class="gh-skip-link" href="${target}">Skip to main content</a>`);
+    note(file, `added skip-to-content link -> ${target}`);
+  } else if (file === 'index.html' && /gh-skip-link" href="#main-content"/.test(out) && /id="home-hero"/.test(out)) {
+    out = out.replace(/gh-skip-link" href="#main-content"/, 'gh-skip-link" href="#home-hero"');
+    note(file, 'skip-to-content retargeted to #home-hero');
   }
   if (/<main[\s>]/i.test(out) && !/id="main-content"/i.test(out)) {
     out = out.replace(/<main(\s|>)/i, '<main id="main-content"$1');
     note(file, 'gave <main> id="main-content"');
-  } else if ((file === 'index.html' || file === 'enterprise.html') && !/id="main-content"/i.test(out)) {
-    out = out.replace(/<section([^>]*class="(?:immersive-)?hero(?:\s|")[^>]*)/i, '<section id="main-content"$1');
-    note(file, 'gave hero <section> id="main-content"');
+  } else if (file === 'enterprise.html' && !/id="main-content"/i.test(out)) {
+    const b = out;
+    out = out.replace(/<section([^>]*class="hero(?:\s|")[^>]*)/i, '<section id="main-content"$1');
+    if (out !== b) note(file, 'gave hero <section> id="main-content"');
   }
   return out;
 }

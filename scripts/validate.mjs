@@ -243,7 +243,16 @@ console.log('\n== 12. Accessibility spot-checks ==');
 {
   for (const f of ALL_HTML) {
     const html = read(f);
-    if (!/gh-skip-link|skip-link/.test(html)) info(`${f}: no skip link (may be structural page)`);
+    const skipLinks = [...html.matchAll(/<a[^>]*class="[^"]*gh-skip-link[^"]*"[^>]*href="(#[\w-]+)"[^>]*>/gi)];
+    if (skipLinks.length) {
+      for (const m of skipLinks) {
+        const id = m[1].slice(1);
+        if (new RegExp(`id=["']${id}["']`).test(html)) ok(`${f}: skip target #${id} exists`);
+        else bad(`${f}: skip link target #${id} MISSING`);
+      }
+    } else if (!/skip-link/.test(html)) {
+      info(`${f}: no skip link (may be structural page)`);
+    }
     const imgs = [...html.matchAll(/<img\b[^>]*>/gi)];
     const noAlt = imgs.filter((m) => !/\balt="/i.test(m[0]));
     if (noAlt.length) bad(`${f}: ${noAlt.length} <img> without alt`);
