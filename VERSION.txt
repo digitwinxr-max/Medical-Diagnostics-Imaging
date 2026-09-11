@@ -1,6 +1,0 @@
-Medical Diagnostic Imaging — Final Optimized Netlify Hosting Package
-Version: 3.0.0-final-current
-Build date: 2026-07-13
-
-This package is built directly from the current workspace, not the stale uploads copy.
-It includes the latest About Us reception.png replacement and all subsequent visual/Netlify refinements.

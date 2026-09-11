@@ -1,3 +1,9 @@
+# Gerald Holdings — Medical Diagnostic Imaging
+# Static multi-page site + one Netlify Function for the JSON form API.
+# There is intentionally NO build command: css/bundle.min.css is prebuilt
+# from css/input.css (npm run css:build) and committed, so Netlify serves
+# this directory exactly as checked in.
+
 [build]
   publish = "."
   functions = "netlify/functions"
@@ -5,10 +11,19 @@
 [functions]
   node_bundler = "esbuild"
 
+# JSON form API for API clients / Netlify Dev (server.js local dev).
 [[redirects]]
   from = "/api/forms"
   to = "/.netlify/functions/forms"
   status = 200
+
+# Submissions are collected by Netlify Forms in production. The local
+# (server.js) data directory must never be served publicly.
+[[redirects]]
+  from = "/data/*"
+  to = "/404.html"
+  status = 404
+  force = true
 
 [[headers]]
   for = "/*"
@@ -17,7 +32,22 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
 
 [[headers]]
   for = "/images/4k/*"
@@ -28,3 +58,9 @@
   for = "/images/mobile/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/infographics/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+

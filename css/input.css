@@ -1,17 +1,63 @@
 @import "tailwindcss";
 
+/* Scan the whole project (HTML pages, JS, docs) for utility classes —
+   the entry point lives in css/, so the default scan would miss the
+   markup at the repository root. */
+@source "../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   GERALD HOLDINGS OFFICIAL BRAND COLOUR SYSTEM (Tailwind v4 theme)
+   GH BLUE #1088C8 / GH PURPLE #631E9F / GH GOLD #C5A531 / GH GREEN #81A54D
+   ========================================================================== */
 @theme {
-  --color-primary-navy: #062C5A;
-  --color-primary-navy-dark: #021329;
-  --color-secondary-blue: #0D4C92;
-  --color-accent-cyan: #00C2FF;
-  --color-bg-slate: #F8FAFC;
-  --color-text-dark: #0F172A;
-  --color-text-muted: #64748B;
+  /* --- Official Gerald Holdings palette --- */
+  --color-gh-blue: #1088C8;
+  --color-gh-blue-bright: #38B4E8;   /* tint for accents on dark surfaces */
+  --color-gh-blue-deep: #0A3D5C;     /* deep corporate surface, derived    */
+  --color-gh-blue-ink: #06202F;      /* near-black blue ink                */
+  --color-gh-blue-hover: #0D6EA3;    /* AA-safe blue for text/buttons on light */
+
+  --color-gh-purple: #631E9F;
+  --color-gh-purple-deep: #451468;
+  --color-gh-purple-bright: #9B5CD0; /* tint for accents on dark surfaces */
+
+  --color-gh-gold: #C5A531;
+  --color-gh-gold-text: #7A5F10;     /* AA-safe gold text on light surfaces */
+  --color-gh-gold-soft: #F6EEDA;
+
+  --color-gh-green: #81A54D;
+  --color-gh-green-text: #55702F;    /* AA-safe green text on light surfaces */
+  --color-gh-green-soft: #F1F6E8;
+
+  /* --- Supporting neutrals --- */
+  --color-gh-ivory: #FAF9F5;
+  --color-gh-charcoal: #1F2933;
+  --color-gh-muted: #667085;
+
+  /* --- Legacy utility names mapped onto the GH palette -------------------
+     Existing markup uses bg-primary-navy / text-accent-cyan etc. These now
+     resolve to Gerald Holdings brand values, keeping the site coherent
+     without mass-renaming markup. */
+  --color-primary-navy: #0A3D5C;     /* legacy navy name -> GH blue deep */
+  --color-primary-navy-dark: #06202F;/* legacy navy-dark name -> GH blue ink */
+  --color-secondary-blue: #0D6EA3;   /* legacy secondary name -> AA-safe GH blue */
+  --color-accent-cyan: #38B4E8;      /* legacy cyan name -> GH blue bright */
+  --color-bg-slate: #FAF9F5;         /* warm ivory paper */
+  --color-text-dark: #1F2933;
+  --color-text-muted: #667085;
 
   --font-manrope: 'Manrope', sans-serif;
   --font-jakarta: 'Plus Jakarta Sans', sans-serif;
   --font-inter: 'Inter', sans-serif;
+
+  /* Numeric font-weight utilities used across the markup (font-400 etc.) */
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
 }
 /* ==========================================================================
    GERALD HOLDINGS MEDICAL DIAGNOSTIC IMAGING – PREMIUM DESIGN SYSTEM
@@ -19,28 +65,51 @@
    ========================================================================== */
 
 :root {
-  /* Color Palette - Elegant, Clinical, High-Tech */
-  --primary-navy: #062C5A;
-  --primary-navy-dark: #021329;
-  --secondary-blue: #0D4C92;
-  --accent-cyan: #00C2FF;
-  --accent-cyan-glow: rgba(0, 194, 255, 0.45);
-  --medical-blue-glow: rgba(13, 76, 146, 0.35);
-  --bg-slate: #F8FAFC;
-  --bg-dark: #041021;
+  /* ==========================================================================
+     GERALD HOLDINGS CENTRAL DESIGN SYSTEM — official brand tokens
+     (mirrored from css/style.css; bundle build shares one source of truth)
+     ========================================================================== */
+  --gh-blue: #1088C8;
+  --gh-blue-bright: #38B4E8;
+  --gh-blue-deep: #0A3D5C;
+  --gh-blue-ink: #06202F;
+  --gh-blue-hover: #0D6EA3;
+  --gh-purple: #631E9F;
+  --gh-purple-deep: #451468;
+  --gh-purple-bright: #9B5CD0;
+  --gh-gold: #C5A531;
+  --gh-gold-text: #7A5F10;
+  --gh-gold-soft: #F6EEDA;
+  --gh-green: #81A54D;
+  --gh-green-text: #55702F;
+  --gh-green-soft: #F1F6E8;
+  --gh-white: #FFFFFF;
+  --gh-ivory: #FAF9F5;
+  --gh-text: #1F2933;
+  --gh-muted: #667085;
+
+  /* Legacy design-system aliases, value-mapped onto the GH palette. */
+  --primary-navy: #0A3D5C;
+  --primary-navy-dark: #06202F;
+  --secondary-blue: #0D6EA3;
+  --accent-cyan: #38B4E8;
+  --accent-cyan-glow: rgba(56, 180, 232, 0.45);
+  --medical-blue-glow: rgba(16, 136, 200, 0.35);
+  --bg-slate: #FAF9F5;
+  --bg-dark: #051A27;
   --surface-light: rgba(255, 255, 255, 0.85);
-  --surface-dark: rgba(6, 44, 90, 0.75);
-  --text-dark: #0F172A;
-  --text-muted: #64748B;
-  --text-light: #F8FAFC;
+  --surface-dark: rgba(10, 61, 92, 0.75);
+  --text-dark: #1F2933;
+  --text-muted: #667085;
+  --text-light: #FAF9F5;
   
   /* Glassmorphism & Borders */
   --glass-border: rgba(255, 255, 255, 0.15);
-  --glass-border-cyan: rgba(0, 194, 255, 0.3);
-  --glass-shadow: 0 20px 50px -15px rgba(2, 19, 41, 0.35);
-  --shadow-sm: 0 2px 8px -2px rgba(6, 44, 90, 0.08);
-  --shadow-md: 0 10px 25px -5px rgba(6, 44, 90, 0.12);
-  --shadow-lg: 0 25px 50px -12px rgba(6, 44, 90, 0.18);
+  --glass-border-cyan: rgba(56, 180, 232, 0.3);
+  --glass-shadow: 0 20px 50px -15px rgba(6, 32, 47, 0.35);
+  --shadow-sm: 0 2px 8px -2px rgba(10, 61, 92, 0.08);
+  --shadow-md: 0 10px 25px -5px rgba(10, 61, 92, 0.12);
+  --shadow-lg: 0 25px 50px -12px rgba(10, 61, 92, 0.18);
   
   /* Transitions */
   --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -49,10 +118,10 @@
 
 /* Dark Mode Overrides */
 html.dark {
-  --bg-slate: #030C19;
-  --text-dark: #F1F5F9;
-  --text-muted: #94A3B8;
-  --surface-light: rgba(10, 25, 47, 0.85);
+  --bg-slate: #05141F;
+  --text-dark: #F3F1EA;
+  --text-muted: #9AA7B4;
+  --surface-light: rgba(6, 32, 47, 0.85);
   --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
   --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
@@ -83,7 +152,7 @@ h1, h2, h3, h4, .font-heading {
    GLASSMORPHISM & PREMIUM SURFACES
    ========================================================================== */
 .glass-nav {
-  background: rgba(6, 44, 90, 0.88);
+  background: rgba(10, 61, 92, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -92,8 +161,8 @@ h1, h2, h3, h4, .font-heading {
 }
 
 html.dark .glass-nav {
-  background: rgba(3, 12, 25, 0.92);
-  border-bottom: 1px solid rgba(0, 194, 255, 0.2);
+  background: rgba(5, 21, 31, 0.92);
+  border-bottom: 1px solid rgba(56, 180, 232, 0.2);
 }
 
 .glass-card {
@@ -107,41 +176,41 @@ html.dark .glass-nav {
 }
 
 html.dark .glass-card {
-  background: rgba(13, 30, 56, 0.65);
+  background: rgba(10, 61, 92, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 25px 50px -12px rgba(0, 194, 255, 0.18);
-  border-color: rgba(0, 194, 255, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(56, 180, 232, 0.18);
+  border-color: rgba(56, 180, 232, 0.4);
 }
 
 .glass-panel-dark {
-  background: linear-gradient(135deg, rgba(6, 44, 90, 0.95) 0%, rgba(13, 76, 146, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(10, 61, 92, 0.95) 0%, rgba(16, 136, 200, 0.9) 100%);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 194, 255, 0.25);
+  border: 1px solid rgba(56, 180, 232, 0.25);
   box-shadow: var(--glass-shadow);
   border-radius: 1.5rem;
 }
 
 /* Glowing Elements */
 .glow-text-cyan {
-  color: #00C2FF;
-  text-shadow: 0 0 15px rgba(0, 194, 255, 0.5);
+  color: #38B4E8;
+  text-shadow: 0 0 15px rgba(56, 180, 232, 0.5);
 }
 
 .glow-btn {
-  background: linear-gradient(135deg, #00C2FF 0%, #0D4C92 100%);
+  background: linear-gradient(135deg, #38B4E8 0%, #1088C8 100%);
   color: #FFFFFF;
-  box-shadow: 0 8px 25px -5px rgba(0, 194, 255, 0.45);
+  box-shadow: 0 8px 25px -5px rgba(56, 180, 232, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.3);
   transition: var(--transition-smooth);
 }
 
 .glow-btn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 30px -4px rgba(0, 194, 255, 0.65);
+  box-shadow: 0 12px 30px -4px rgba(56, 180, 232, 0.65);
   background: linear-gradient(135deg, #20D0FF 0%, #0E5AA8 100%);
 }
 
@@ -153,7 +222,7 @@ html.dark .glass-card {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(90deg, #00C2FF, transparent, #0D4C92);
+  background: linear-gradient(90deg, #38B4E8, transparent, #1088C8);
   z-index: -1;
   opacity: 0.7;
 }
@@ -162,15 +231,15 @@ html.dark .glass-card {
    HERO & BACKGROUND EFFECTS
    ========================================================================== */
 .hero-gradient-bg {
-  background: linear-gradient(135deg, #021124 0%, #062C5A 50%, #0D4C92 100%);
+  background: linear-gradient(135deg, #04121C 0%, #0A3D5C 50%, #1088C8 100%);
   position: relative;
   overflow: hidden;
 }
 
 .hero-grid-pattern {
   background-image: 
-    linear-gradient(rgba(0, 194, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 194, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(56, 180, 232, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 180, 232, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
   position: absolute;
   inset: 0;
@@ -233,8 +302,8 @@ html.dark .glass-card {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #00C2FF, #FFFFFF, #00C2FF, transparent);
-  box-shadow: 0 0 15px #00C2FF, 0 0 30px #00C2FF;
+  background: linear-gradient(90deg, transparent, #38B4E8, #FFFFFF, #38B4E8, transparent);
+  box-shadow: 0 0 15px #38B4E8, 0 0 30px #38B4E8;
   animation: scan-laser 3.5s ease-in-out infinite alternate;
   z-index: 10;
 }
@@ -247,7 +316,7 @@ html.dark .glass-card {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
-  border: 1px solid rgba(0, 194, 255, 0.3);
+  border: 1px solid rgba(56, 180, 232, 0.3);
   box-shadow: var(--shadow-lg);
   user-select: none;
 }
@@ -258,8 +327,8 @@ html.dark .glass-card {
   height: 100%;
   width: 50%;
   overflow: hidden;
-  border-right: 2px solid #00C2FF;
-  box-shadow: 5px 0 15px rgba(0, 194, 255, 0.5);
+  border-right: 2px solid #38B4E8;
+  box-shadow: 5px 0 15px rgba(56, 180, 232, 0.5);
   z-index: 2;
 }
 .img-comp-handle {
@@ -270,53 +339,53 @@ html.dark .glass-card {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #00C2FF;
-  color: #021329;
+  background: #38B4E8;
+  color: #06202F;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  box-shadow: 0 0 20px rgba(0, 194, 255, 0.8), inset 0 0 10px #FFFFFF;
+  box-shadow: 0 0 20px rgba(56, 180, 232, 0.8), inset 0 0 10px #FFFFFF;
   cursor: ew-resize;
   z-index: 3;
 }
 
 /* DICOM PACS Clinical Workspace Simulator */
 .pacs-workspace {
-  background: #020813;
-  border: 1px solid #1E293B;
+  background: #04121C;
+  border: 1px solid #263543;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
   font-family: 'Inter', monospace;
 }
 .pacs-hud-text {
-  color: #00C2FF;
+  color: #38B4E8;
   font-size: 0.75rem;
   font-family: monospace;
-  text-shadow: 0 0 5px rgba(0, 194, 255, 0.5);
+  text-shadow: 0 0 5px rgba(56, 180, 232, 0.5);
 }
 .pacs-tool-btn {
-  background: #0F172A;
-  border: 1px solid #334155;
-  color: #94A3B8;
+  background: #1F2933;
+  border: 1px solid #3A4A57;
+  color: #9AA7B4;
   padding: 0.4rem 0.75rem;
   border-radius: 0.375rem;
   font-size: 0.8rem;
   transition: var(--transition-fast);
 }
 .pacs-tool-btn:hover, .pacs-tool-btn.active {
-  background: #00C2FF;
-  color: #020813;
-  border-color: #00C2FF;
-  box-shadow: 0 0 12px rgba(0, 194, 255, 0.5);
+  background: #38B4E8;
+  color: #04121C;
+  border-color: #38B4E8;
+  box-shadow: 0 0 12px rgba(56, 180, 232, 0.5);
   font-weight: 600;
 }
 
 /* Live Telemetry Dashboard Tickers */
 .telemetry-card {
-  background: rgba(6, 44, 90, 0.6);
-  border: 1px solid rgba(0, 194, 255, 0.2);
+  background: rgba(10, 61, 92, 0.6);
+  border: 1px solid rgba(56, 180, 232, 0.2);
   border-radius: 1rem;
   padding: 1.25rem;
   position: relative;
@@ -330,30 +399,30 @@ html.dark .glass-card {
   left: 0;
   width: 4px;
   height: 100%;
-  background: #00C2FF;
+  background: #38B4E8;
 }
 .telemetry-card:hover {
-  background: rgba(13, 76, 146, 0.7);
+  background: rgba(16, 136, 200, 0.7);
   transform: translateY(-3px);
-  border-color: #00C2FF;
+  border-color: #38B4E8;
 }
 
 /* Interactive Map Nodes */
 .map-node-pin {
   width: 14px;
   height: 14px;
-  background: #00C2FF;
+  background: #38B4E8;
   border-radius: 50%;
   position: relative;
   cursor: pointer;
-  box-shadow: 0 0 12px #00C2FF;
+  box-shadow: 0 0 12px #38B4E8;
 }
 .map-node-pin::before {
   content: '';
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 2px solid #00C2FF;
+  border: 2px solid #38B4E8;
   animation: pulse-glow 2s infinite ease-in-out;
 }
 
@@ -370,7 +439,7 @@ html.dark .glass-card {
   left: 0;
   width: 0%;
   height: 2px;
-  background: #00C2FF;
+  background: #38B4E8;
   transition: width 0.3s ease;
 }
 .nav-link-underline:hover::after, .nav-link-underline.active::after {
@@ -405,7 +474,7 @@ html.dark .glass-card {
 }
 
 :focus-visible {
-  outline: 3px solid #00C2FF !important;
+  outline: 3px solid #38B4E8 !important;
   outline-offset: 2px;
 }
 
@@ -414,13 +483,13 @@ html.dark .glass-card {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #021124;
+  background: #04121C;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0D4C92;
+  background: #1088C8;
   border-radius: 5px;
-  border: 2px solid #021124;
+  border: 2px solid #04121C;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00C2FF;
+  background: #38B4E8;
 }

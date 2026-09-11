@@ -27,13 +27,13 @@ function initNavbar() {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 40) {
         navbar.classList.add('shadow-2xl', 'border-b', 'border-white/20');
-        navbar.style.background = 'rgba(6, 44, 90, 0.95)';
+        navbar.style.background = 'rgba(10, 61, 92, 0.95)';
         if (document.documentElement.classList.contains('dark')) {
-          navbar.style.background = 'rgba(2, 15, 33, 0.95)';
+          navbar.style.background = 'rgba(6, 32, 47, 0.95)';
         }
       } else {
         navbar.classList.remove('shadow-2xl');
-        navbar.style.background = 'rgba(6, 44, 90, 0.82)';
+        navbar.style.background = 'rgba(10, 61, 92, 0.82)';
       }
     });
   }
@@ -407,9 +407,9 @@ function initDicomViewer() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw diagnostic anatomy shape based on current case
-    ctx.strokeStyle = '#00C2FF';
+    ctx.strokeStyle = '#38B4E8';
     ctx.lineWidth = 2;
-    ctx.fillStyle = 'rgba(0, 194, 255, 0.12)';
+    ctx.fillStyle = 'rgba(56, 180, 232, 0.12)';
 
     if (currentCase === 'brain') {
       // Skull ring
@@ -426,7 +426,7 @@ function initDicomViewer() {
       ctx.fill();
 
       // Gyri details
-      ctx.strokeStyle = 'rgba(0, 194, 255, 0.35)';
+      ctx.strokeStyle = 'rgba(56, 180, 232, 0.35)';
       for (let i = 80; i < 320; i += 25) {
         ctx.beginPath();
         ctx.arc(200, 200, Math.abs(i - 200) * 0.7 + 30, 0, Math.PI);
@@ -451,7 +451,7 @@ function initDicomViewer() {
       ctx.stroke();
       
       // Lungs
-      ctx.fillStyle = 'rgba(0, 194, 255, 0.08)';
+      ctx.fillStyle = 'rgba(56, 180, 232, 0.08)';
       ctx.beginPath();
       ctx.ellipse(140, 200, 45, 80, -0.1, 0, Math.PI * 2);
       ctx.ellipse(260, 200, 45, 80, 0.1, 0, Math.PI * 2);
@@ -465,10 +465,10 @@ function initDicomViewer() {
       ctx.fill();
 
       if (reviewOverlayActive) {
-        ctx.strokeStyle = '#34C759';
+        ctx.strokeStyle = '#81A54D';
         ctx.lineWidth = 2;
         ctx.strokeRect(190, 200, 40, 40);
-        ctx.fillStyle = '#34C759';
+        ctx.fillStyle = '#81A54D';
         ctx.font = '11px monospace';
         ctx.fillText('COMPUTER-AIDED REVIEW: NORMAL CORONARY CALCIUM SCORE = 0', 100, 120);
       }
@@ -479,7 +479,7 @@ function initDicomViewer() {
         ctx.rect(170, y, 60, 28);
       }
       ctx.stroke();
-      ctx.fillStyle = 'rgba(0, 194, 255, 0.2)';
+      ctx.fillStyle = 'rgba(56, 180, 232, 0.2)';
       ctx.fill();
     }
 
@@ -487,7 +487,7 @@ function initDicomViewer() {
 
     // Draw HUD text overlays (unfiltered)
     ctx.filter = 'none';
-    ctx.fillStyle = '#00C2FF';
+    ctx.fillStyle = '#38B4E8';
     ctx.font = '11px monospace';
     ctx.fillText(`GERALD HOLDINGS PACS | CASE: ${currentCase.toUpperCase()}`, 15, 25);
     ctx.fillText(`ZOOM: ${(zoom * 100).toFixed(0)}% | WL: ${brightness} / WW: ${contrast}`, 15, canvas.height - 15);
@@ -602,9 +602,9 @@ function initPatientChat() {
         reply = "Our flagship headquarters is located at Unit 20/23, KB Mall, G-West Industrial, Gaborone, Botswana. We also support satellite hospitals nationwide via our 24/7 Teleradiology network.";
       }
 
-      aiDiv.innerHTML = `<div class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-4 py-2.5 rounded-2xl rounded-tl-sm text-sm max-w-[85%] border border-cyan-500/30 shadow-md">
-        <div class="text-[10px] font-bold text-cyan-600 dark:text-cyan-400 mb-1 flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> GERALD PATIENT SUPPORT
+      aiDiv.innerHTML = `<div class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-4 py-2.5 rounded-2xl rounded-tl-sm text-sm max-w-[85%] border border-gh-blue/40 shadow-md">
+        <div class="text-[10px] font-bold text-gh-blue-hover dark:text-gh-blue-bright mb-1 flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-gh-green animate-pulse"></span> GERALD PATIENT SUPPORT
         </div>
         ${reply}
       </div>`;

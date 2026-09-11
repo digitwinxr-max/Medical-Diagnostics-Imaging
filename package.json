@@ -1,14 +1,17 @@
 {
   "name": "gerald-holdings-medical-imaging",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
-  "description": "Gerald Holdings Medical Diagnostic Imaging immersive responsive website and secure form intake service",
+  "description": "Gerald Holdings Medical Diagnostic Imaging responsive static website (GH brand system) with secure form intake for Netlify and local development",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check netlify/functions/forms.js && node --check js/main.js && node --check js/translations.js"
+    "check": "node --check server.js && node --check netlify/functions/forms.js && node --check js/main.js && node --check js/translations.js",
+    "css:build": "tailwindcss -i css/input.css -o css/bundle.min.css --minify",
+    "validate": "node scripts/validate.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.2",
     "tailwindcss": "^4.3.2"
   }
 }
+

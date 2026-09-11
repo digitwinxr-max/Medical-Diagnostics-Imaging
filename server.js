@@ -36,7 +36,7 @@ function send(res, status, body, type = 'application/json; charset=utf-8') {
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Frame-Options': 'SAMEORIGIN',
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-    'Content-Security-Policy': "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'",
+    'Content-Security-Policy': "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline'; frame-src https://www.google.com https://maps.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'",
   });
   res.end(body);
 }
@@ -149,6 +149,9 @@ async function serveStatic(req, res) {
   try { pathname = decodeURIComponent(new URL(req.url, `http://${req.headers.host || 'localhost'}`).pathname); }
   catch { return send(res, 400, 'Bad request', 'text/plain; charset=utf-8'); }
   if (pathname === '/') pathname = '/index.html';
+  // Local-only submission storage must never be served over HTTP (the
+  // Netlify deployment force-404s /data/* in netlify.toml).
+  if (pathname.startsWith('/data/')) return send(res, 404, 'Not found', 'text/plain; charset=utf-8');
   const resolved = path.resolve(ROOT, '.' + pathname);
   if (!resolved.startsWith(ROOT + path.sep)) return send(res, 403, 'Forbidden', 'text/plain; charset=utf-8');
   try {
